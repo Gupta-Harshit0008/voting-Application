@@ -4,7 +4,8 @@
   "description": "this app will allow users to vote dummy candidates and check results",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"nodemon server.js"
   },
   "author": "Harshit",
   "license": "ISC",

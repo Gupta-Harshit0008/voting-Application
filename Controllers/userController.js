@@ -53,6 +53,7 @@ exports.addNewUser= async(req,res)=>{
     }
 }
 
+// ToDo update user profile
 exports.updateUserDetails= (req,res)=>{
     console.log(req.params.id)
     res.status(200).json({
