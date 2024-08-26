@@ -1,4 +1,5 @@
 const user=require('../Models/userModels')
+const signToken=require('../utils/jwtToken')
 
 exports.login=async (req,res)=>{
     let email=req.body.email
@@ -10,17 +11,25 @@ exports.login=async (req,res)=>{
             message:'Please enter your email or password'
         })
    }
-   if(userData && password === userData.password){
-    res.status(200).json({
-        status:'success',
-        userData
-    })}
-   else{
+   if(userData && (userData.password === password )){
+    const token=signToken(userData._id)
+res.status(200).json({
+    status:'success',
+    user:{
+        name:userData.name,
+        email:userData.email,
+        isAdmin:userData.isAdmin,
+        userVoted:userData.voted
+    },
+    token
+})
+}
+else{
     res.status(401).json({
         status:'unauthorized',
         message:'Please enter correct email and password'
     })
-   }
+}
 
 }
 

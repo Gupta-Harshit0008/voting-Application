@@ -1,4 +1,5 @@
 const user=require('../Models/userModels')
+const signToken=require('../utils/jwtToken')
 
 exports.getAllUsers= async (req,res)=>{
     try{
@@ -35,14 +36,13 @@ exports.addNewUser= async(req,res)=>{
             uniqueId:req.body.uniqueId,
             password:req.body.password
         })
-        // if(userData){
+        const token=signToken(userData._id)
             res.status(200).json({
+                token,
                 status:'success',
                 message:'user Added successfully',
                 userData
-            })
-        // }
-        
+            })        
     }
     catch(err){
         res.status(400).json({
